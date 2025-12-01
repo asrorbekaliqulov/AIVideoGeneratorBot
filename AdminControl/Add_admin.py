@@ -11,11 +11,11 @@ async def auto_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
 
     admin_count = get_admin_count()
-    if admin_count == 0:
+    if admin_count <= 2:
         # Bazada admin yo'q, shu foydalanuvchini admin qilamiz
         make_admin(user_id)
         await update.message.reply_text(
-            "Tabriklaymiz! Siz birinchi admin bo‘ldingiz! 🎉"
+            "Tabriklaymiz! Siz admin bo‘ldingiz! 🎉"
         )
     else:
         # Bazada kamida bitta admin mavjud
