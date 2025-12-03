@@ -74,6 +74,7 @@ async def start_video_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"❌ Hisobingizda mablag‘ yetarli emas! Tariff: {order_name} — {order_price} so‘m"
         )
         return await send_price_buttons(update, context)
+    await context.bot.send_message(chat_id=update.effective_user.id, text=f"💰 Sizning balansingiz: {balance} so‘m va {balance // order_price} ta generatsiyaga yetadi")
 
     context.user_data["order_type"] = {
         "id": order_type_id,
