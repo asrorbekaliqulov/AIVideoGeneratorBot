@@ -7,6 +7,10 @@ from Database.VideoOrder_CRUD import (
 )
 import sqlite3
 import os
+from warnings import filterwarnings
+from telegram.warnings import PTBUserWarning
+
+filterwarnings(action="ignore", message=r".*CallbackQueryHandler", category=PTBUserWarning)
 
 DB_NAME = os.getenv("DB_NAME", "app.db")
 

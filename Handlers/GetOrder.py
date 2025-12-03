@@ -4,8 +4,10 @@ from telegram.ext import ConversationHandler, ContextTypes, MessageHandler, Call
 import os
 from Handlers.Payment import send_price_buttons
 from Keyboards.keyboards import get_back_cancel_keyboard, BACK_BUTTON, CANCEL_BUTTON, get_home_keyboard
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="telegram")
+from warnings import filterwarnings
+from telegram.warnings import PTBUserWarning
+
+filterwarnings(action="ignore", message=r".*CallbackQueryHandler", category=PTBUserWarning)
 
 DB_NAME = os.getenv("DB_NAME", "app.db")
 ADMIN_CHANNEL_ID = -1003384632793  # Admin kanal ID sini yozing

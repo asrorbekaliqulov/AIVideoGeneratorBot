@@ -5,14 +5,17 @@ from AdminControl.admin_menu import admin_start,admin_callback
 from AdminControl.Add_admin import auto_admin
 from Commands.start_command import start
 from Handlers.OrderType import zakaz_conv
+from Handlers.statistika import get_stats
 from Handlers.GetOrder import video_order_conv
 from Handlers.CheckOrder import accept_order, admin_video_conv
 from Handlers.Payment import price_handler, paid_handler, cancel_handler, send_price_button, menu_handler
 from Handlers.Contact import contact_admins
 from Database.init_db import init_db
 from dotenv import load_dotenv
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="telegram")
+from warnings import filterwarnings
+from telegram.warnings import PTBUserWarning
+
+filterwarnings(action="ignore", message=r".*CallbackQueryHandler", category=PTBUserWarning)
 
 
 load_dotenv()
@@ -43,6 +46,9 @@ def main():
     app.add_handler(price_handler)
     app.add_handler(paid_handler)
     app.add_handler(cancel_handler)
+    app.add_handler(CallbackQueryHandler(get_stats, pattern="^statistics$"))
+    app.add_handler(CallbackQueryHandler(start, pattern="^main_menu$"))
+    app.add_handler(CallbackQueryHandler(admin_start, pattern="^admin_panel$"))
     app.add_handler(CallbackQueryHandler(accept_order, pattern="^order_accept:"))
     app.add_handler(CallbackQueryHandler(admin_callback))
 

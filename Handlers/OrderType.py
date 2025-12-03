@@ -7,8 +7,10 @@ from Database.OrderType_CRUD import (
     update_order_type, delete_order_type
 )
 from Keyboards.keyboards import admin_panel_keyboard, get_back_cancel_keyboard, BACK_BUTTON, CANCEL_BUTTON
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="telegram")
+from warnings import filterwarnings
+from telegram.warnings import PTBUserWarning
+
+filterwarnings(action="ignore", message=r".*CallbackQueryHandler", category=PTBUserWarning)
 
 (
     SELECT_ACTION,

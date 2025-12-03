@@ -54,18 +54,18 @@ def get_back_cancel_keyboard():
 def admin_panel_keyboard():
     keyboard = [
             [
-                InlineKeyboardButton("📢 Xabar yuborish", callback_data="broadcast"),
+                # InlineKeyboardButton("📢 Xabar yuborish", callback_data="broadcast"),
                 InlineKeyboardButton("📊 Statistika", callback_data="statistics")
             ],
             [
                 InlineKeyboardButton("📋 Zakaz turi", callback_data="order_type"),
-                InlineKeyboardButton("💰 Payment", callback_data="payment")
+                # InlineKeyboardButton("💰 Payment", callback_data="payment")
             ],
-            [
-                InlineKeyboardButton("👤 User boshqaruvi", callback_data="user_management"),
-                InlineKeyboardButton("🛡 Admin boshqaruvi", callback_data="admin_management")
-            ],
-            [InlineKeyboardButton("💾 Export", callback_data="export")]
+            # [
+            #     InlineKeyboardButton("👤 User boshqaruvi", callback_data="user_management"),
+            #     InlineKeyboardButton("🛡 Admin boshqaruvi", callback_data="admin_management")
+            # ],
+            # [InlineKeyboardButton("💾 Export", callback_data="export")]
         ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     return reply_markup

@@ -25,15 +25,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         is_save = create_telegram_user(data.id, data.first_name, data.username)
 
 
-    # === ADMIN uchun alohida xabar ===
-    # if user and user.is_admin:
-    #     await context.bot.send_message(
-    #         chat_id=update.effective_user.id,
-    #         text="<b>Main Menu 🖥\n<tg-spoiler>/admin_panel</tg-spoiler></b>",
-    #         reply_markup=remove,
-    #         parse_mode="html"
-    #     )
-
     # === START VIDEO YUBORISH ===
     try:
         await context.bot.send_video(

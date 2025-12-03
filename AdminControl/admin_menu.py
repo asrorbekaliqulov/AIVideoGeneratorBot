@@ -6,6 +6,10 @@ from telegram.ext import (
 import os
 from Database.TelegramUser_CRUD import get_telegram_user
 from Keyboards.keyboards import admin_panel_keyboard
+from warnings import filterwarnings
+from telegram.warnings import PTBUserWarning
+
+filterwarnings(action="ignore", message=r".*CallbackQueryHandler", category=PTBUserWarning)
 
 # States
 (
@@ -26,11 +30,11 @@ async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Admin panel start, faqat adminlar uchun"""
     user = get_telegram_user(update.effective_user.id)
     if not user or not user[6]:  # is_admin = index 6
-        await update.message.reply_text("Siz admin emassiz!")
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Siz admin emassiz!")
         return ConversationHandler.END
 
     reply_markup = admin_panel_keyboard()
-    await update.message.reply_text("Admin panel:", reply_markup=reply_markup)
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Admin panel:", reply_markup=reply_markup)
     return ADMIN_MENU
 
 # =====================================================
