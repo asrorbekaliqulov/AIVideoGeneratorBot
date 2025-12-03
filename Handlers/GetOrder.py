@@ -213,8 +213,9 @@ async def confirm_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         await query.message.reply_text(
-            f"✅ Zakaz qabul qilindi!\nTarif: {order_type['name']} — {order_type['price']} so'm",
-            reply_markup=ReplyKeyboardRemove()
+            f"<b>✅ Zakaz qabul qilindi!</b>\nTarif: {order_type['name']} — {order_type['price']} so'm\n<i>Ushbu jarayon 5 daqiqadan 5 soatgacha vaqt oralig'ida video yuboriladi. Iltimos, sabr qiling.</i>",
+            reply_markup=ReplyKeyboardRemove(),
+            parse_mode="HTML"
         )
 
         return await user_panel(update, context)
