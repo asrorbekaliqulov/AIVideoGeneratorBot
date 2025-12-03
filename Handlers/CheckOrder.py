@@ -74,6 +74,7 @@ async def accept_order(update: Update, context: ContextTypes.DEFAULT_TYPE):
             message_id=channel_message_id,
             caption=(
                 "✔ **Zakaz qabul qilindi!**\n"
+                f"User ID: `{order[1]}`\n"
                 "Botga o'tib buyurtmani yakunlang."
             ),
             parse_mode="Markdown",
