@@ -124,6 +124,15 @@ def get_admin_count():
     conn.close()
     return count
 
+def is_user_admin(user_id):
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+
+    c.execute("SELECT is_admin FROM telegram_user WHERE user_id=?", (user_id,))
+    row = c.fetchone()
+
+    conn.close()
+    return row[0] == 1 if row else False
 
 # =====================================================
 #  STATISTICS

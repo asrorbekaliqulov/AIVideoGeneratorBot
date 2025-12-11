@@ -3,6 +3,10 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from Keyboards.keyboards import get_home_keyboard
 from Database.TelegramUser_CRUD import create_telegram_user, get_telegram_user
+import sqlite3
+import os
+
+DB_NAME = os.getenv("DB_NAME", "app.db")
 
 
 
@@ -22,7 +26,18 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if user:
         pass  # Foydalanuvchi bazada mavjud bo'lsa, yangilashni amalga oshirish mumkin
     else:
-        is_save = create_telegram_user(data.id, data.first_name, data.username)
+
+        conn = sqlite3.connect(DB_NAME)
+        c = conn.cursor()
+        c.execute("SELECT id, name, price FROM order_type WHERE is_active=1")
+        row = c.fetchone()
+        conn.close()
+
+        if row:
+            order_type_id, order_name, order_price = row
+        else:
+            order_type_id, order_name, order_price = None, None, 0
+        is_save = create_telegram_user(data.id, data.first_name, data.username, balance=order_price)
 
 
     # === START VIDEO YUBORISH ===

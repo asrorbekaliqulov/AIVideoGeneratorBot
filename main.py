@@ -1,8 +1,8 @@
 from telegram import Update
 from telegram.ext import Application, ContextTypes, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 import os
-from AdminControl.admin_menu import admin_start,admin_callback
-from AdminControl.Add_admin import auto_admin
+from AdminControl.admin_menu import admin_start,admin_callback, admin_control_menu
+from AdminControl.Add_admin import Admin_Add, auto_admin, handle_new_admin_selection
 from Commands.start_command import start
 from Handlers.OrderType import zakaz_conv
 from Handlers.statistika import get_stats
@@ -50,9 +50,14 @@ def main():
     app.add_handler(CallbackQueryHandler(start, pattern="^main_menu$"))
     app.add_handler(CallbackQueryHandler(admin_start, pattern="^admin_panel$"))
     app.add_handler(CallbackQueryHandler(accept_order, pattern="^order_accept:"))
+    app.add_handler(CallbackQueryHandler(Admin_Add, pattern="^add_admin$"))
+    app.add_handler(CallbackQueryHandler(admin_control_menu, pattern="^admin_management$"))
     app.add_handler(CallbackQueryHandler(admin_callback))
 
     app.add_handler(MessageHandler(filters.Regex("^📞 Murojaat$"), contact_admins))
+    app.add_handler(MessageHandler(filters.Regex("^🔙 Orqаga$"), admin_start))
+
+    app.add_handler(MessageHandler(filters.USER & ~filters.COMMAND, handle_new_admin_selection))
 
 
     print("The bot is running!!!")

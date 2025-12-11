@@ -61,10 +61,10 @@ def admin_panel_keyboard():
                 InlineKeyboardButton("📋 Zakaz turi", callback_data="order_type"),
                 # InlineKeyboardButton("💰 Payment", callback_data="payment")
             ],
-            # [
+            [
             #     InlineKeyboardButton("👤 User boshqaruvi", callback_data="user_management"),
-            #     InlineKeyboardButton("🛡 Admin boshqaruvi", callback_data="admin_management")
-            # ],
+                InlineKeyboardButton("🛡 Admin boshqaruvi", callback_data="admin_management")
+            ],
             # [InlineKeyboardButton("💾 Export", callback_data="export")]
         ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -90,5 +90,19 @@ def refund_buttons(order_id):
         [
             InlineKeyboardButton("Ha", callback_data=f"refund_yes:{order_id}"),
             InlineKeyboardButton("Yo‘q", callback_data=f"refund_no:{order_id}")
+        ]
+    ])
+
+def admin_control_buttons():
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("Adminlar ro'yxati", callback_data="list_admins")
+        ],
+        [
+            InlineKeyboardButton("Admin qo'shish", callback_data="add_admin"),
+            InlineKeyboardButton("Admin o'chirish", callback_data="remove_admin")
+        ],
+        [
+            InlineKeyboardButton("Orqaga", callback_data="admin_panel")
         ]
     ])
