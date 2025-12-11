@@ -1,4 +1,4 @@
-from telegram import Update
+from telegram import Update, LinkPreviewOptions
 from telegram.ext import ContextTypes
 from Database.TelegramUser_CRUD import get_admin_users
 
@@ -17,4 +17,4 @@ async def contact_admins(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "✉️ Ushbu guruhga xabaringizni yo‘llang va tez orada javob olasiz."
     )
 
-    await update.message.reply_text(text, parse_mode="Markdown")
+    await update.message.reply_text(text, parse_mode="Markdown", link_preview_options=LinkPreviewOptions(is_disabled=True, url="https://t.me/+4boksuF1saczMjI6"))
