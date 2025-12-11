@@ -13,8 +13,8 @@ async def contact_admins(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = (
         "📞 *Administratorlar bilan bog‘lanish*\n\n"
-        f"{admin_list_text}\n\n"
-        "✉️ Adminlarimizga xabaringizni yo‘llang yoki ularga murojaat qiling."
+        "https://t.me/+4boksuF1saczMjI6\n\n"
+        "✉️ Ushbu guruhga xabaringizni yo‘llang va tez orada javob olasiz."
     )
 
     await update.message.reply_text(text, parse_mode="Markdown")
