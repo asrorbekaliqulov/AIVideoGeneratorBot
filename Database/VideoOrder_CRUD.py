@@ -322,3 +322,11 @@ def update_video_order_status(order_id, status, reason=None):
     )
     conn.commit()
     conn.close()
+
+def get_order_count_by_user_id(user_id):
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    c.execute("SELECT COUNT(*) FROM video_order WHERE user_id=?", (user_id,))
+    count = c.fetchone()[0]
+    conn.close()
+    return count

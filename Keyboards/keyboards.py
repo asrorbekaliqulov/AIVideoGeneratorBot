@@ -62,7 +62,7 @@ def admin_panel_keyboard():
                 # InlineKeyboardButton("💰 Payment", callback_data="payment")
             ],
             [
-            #     InlineKeyboardButton("👤 User boshqaruvi", callback_data="user_management"),
+                InlineKeyboardButton("👤 User boshqaruvi", callback_data="user_management"),
                 InlineKeyboardButton("🛡 Admin boshqaruvi", callback_data="admin_management")
             ],
             # [InlineKeyboardButton("💾 Export", callback_data="export")]
@@ -101,6 +101,20 @@ def admin_control_buttons():
         [
             InlineKeyboardButton("Admin qo'shish", callback_data="add_admin"),
             InlineKeyboardButton("Admin o'chirish", callback_data="remove_admin")
+        ],
+        [
+            InlineKeyboardButton("Orqaga", callback_data="admin_panel")
+        ]
+    ])
+
+def user_control_buttons():
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("Foydalanuvchilar ro'yxati", callback_data="list_users")
+        ],
+        [
+            InlineKeyboardButton("Foydalanuvchi qidirish", callback_data="search_user"),
+            InlineKeyboardButton("Foydalanuvchiga zakaz yuborish", callback_data="send_order_to_user")
         ],
         [
             InlineKeyboardButton("Orqaga", callback_data="admin_panel")

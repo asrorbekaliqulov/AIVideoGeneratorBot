@@ -4,6 +4,8 @@ import os
 from AdminControl.admin_menu import admin_start,admin_callback, admin_control_menu
 from AdminControl.Add_admin import Admin_Add, auto_admin, handle_new_admin_selection
 from Commands.start_command import start
+from UserControl.search_user import search_conv_handler, handle_user_orders
+from UserControl.user_panel import user_management_panel
 from Handlers.OrderType import zakaz_conv
 from Handlers.statistika import get_stats
 from Handlers.GetOrder import video_order_conv
@@ -52,6 +54,9 @@ def main():
     app.add_handler(CallbackQueryHandler(accept_order, pattern="^order_accept:"))
     app.add_handler(CallbackQueryHandler(Admin_Add, pattern="^add_admin$"))
     app.add_handler(CallbackQueryHandler(admin_control_menu, pattern="^admin_management$"))
+    app.add_handler(search_conv_handler)
+    app.add_handler(CallbackQueryHandler(handle_user_orders, pattern="^userorders_"))
+    app.add_handler(CallbackQueryHandler(user_management_panel, pattern="^user_management$"))
     app.add_handler(CallbackQueryHandler(admin_callback))
 
     app.add_handler(MessageHandler(filters.Regex("^📞 Murojaat$"), contact_admins))
