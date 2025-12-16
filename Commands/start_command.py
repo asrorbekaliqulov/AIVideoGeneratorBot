@@ -37,7 +37,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             order_type_id, order_name, order_price = row
         else:
             order_type_id, order_name, order_price = None, None, 0
-        is_save = create_telegram_user(data.id, data.first_name, data.username, balance=order_price)
+        is_save = create_telegram_user(data.id, data.first_name, data.username, balance=0)
 
 
     # === START VIDEO YUBORISH ===
